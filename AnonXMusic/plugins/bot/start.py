@@ -1,4 +1,5 @@
 import time
+import random 
 
 from pyrogram import filters
 from pyrogram.enums import ChatType
@@ -23,6 +24,9 @@ from AnonXMusic.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
 
+st = [
+    "https://te.legra.ph/file/11da26a0a1d3852e5dd97.jpg", "https://te.legra.ph/file/d1496d5ed6e1848040788.jpg", "https://te.legra.ph/file/b99eee6eb9076624c7e07.jpg", "https://te.legra.ph/file/b70e2ee78c30625abf41a.jpg", "https://te.legra.ph/file/06a0fa68f9f83adf89f22.jpg", "https://te.legra.ph/file/aad1e48df32a42b2f8dc6.jpg"
+]
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
 @LanguageStart
@@ -32,8 +36,9 @@ async def start_pm(client, message: Message, _):
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            return await message.reply_animation(
-                animation=config.START_IMG_URL,
+            photo=random.choice(st)
+            return await message.reply_photo(
+                photo=photo,
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
