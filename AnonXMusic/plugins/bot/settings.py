@@ -9,7 +9,7 @@ from pyrogram.types import (
     InputMediaAnimation,
 )
 
-from AnonXMusic import (app, config)
+from AnonXMusic import app
 from AnonXMusic.utils.database import (
     add_nonadmin_chat,
     get_authuser,
@@ -90,7 +90,7 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         buttons = private_panel(_)
         return await CallbackQuery.edit_message_media(
             InputMediaAnimation(
-                media=config.START_IMG_URL,
+                media=import config.START_IMG_URL,
                 caption=_["start_2"].format(
                     CallbackQuery.from_user.mention, app.mention
                 ),
