@@ -36,7 +36,7 @@ from AnonXMusic.utils.inline.settings import (
 )
 from AnonXMusic.utils.inline.start import private_panel
 from config import BANNED_USERS, OWNER_ID, START_IMG_URL
-
+import config
 
 @app.on_message(
     filters.command(["settings", "setting"]) & filters.group & ~BANNED_USERS
@@ -90,7 +90,7 @@ async def settings_back_markup(client, CallbackQuery: CallbackQuery, _):
         buttons = private_panel(_)
         return await CallbackQuery.edit_message_media(
             InputMediaAnimation(
-                media=import config.START_IMG_URL,
+                media=config.START_IMG_URL,
                 caption=_["start_2"].format(
                     CallbackQuery.from_user.mention, app.mention
                 ),
