@@ -24,8 +24,8 @@ from AnonXMusic.utils.inline import help_pannel, private_panel, start_panel
 from config import BANNED_USERS
 from strings import get_string
 
-st = [
-    "https://te.legra.ph/file/11da26a0a1d3852e5dd97.jpg", "https://te.legra.ph/file/d1496d5ed6e1848040788.jpg", "https://te.legra.ph/file/b99eee6eb9076624c7e07.jpg", "https://te.legra.ph/file/b70e2ee78c30625abf41a.jpg", "https://te.legra.ph/file/06a0fa68f9f83adf89f22.jpg", "https://te.legra.ph/file/aad1e48df32a42b2f8dc6.jpg"
+animation = [
+    "https://te.legra.ph/file/aef4273eab89ab640c19d.mp4", "https://te.legra.ph/file/42064b9dac650dbabefcf.mp4", "https://te.legra.ph/file/9ed9772c1bb3b73b8281c.mp4", "https://te.legra.ph/file/5915bd30c9ff096b93366.mp4", "https://te.legra.ph/file/c81f22d15f568f38dec47.mp4"
 ]
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
