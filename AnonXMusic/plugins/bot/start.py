@@ -36,7 +36,7 @@ async def start_pm(client, message: Message, _):
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            animation=random.choice(st)
+            animation=random.choice(animation)
             return await message.reply_animation(
                 animation=animation,
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
