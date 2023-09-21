@@ -25,7 +25,7 @@ from config import BANNED_USERS
 from strings import get_string
 
 animation=[
-    "https://te.legra.ph/file/aef4273eab89ab640c19d.mp4", "https://te.legra.ph/file/42064b9dac650dbabefcf.mp4", "https://te.legra.ph/file/9ed9772c1bb3b73b8281c.mp4", "https://te.legra.ph/file/5915bd30c9ff096b93366.mp4", "https://te.legra.ph/file/c81f22d15f568f38dec47.mp4"
+    "https://te.legra.ph/file/aef4273eab89ab640c19d.mp4", "https://te.legra.ph/file/42064b9dac650dbabefcf.mp4", "https://te.legra.ph/file/9ed9772c1bb3b73b8281c.mp4", "https://te.legra.ph/file/5915bd30c9ff096b93366.mp4", "https://te.legra.ph/file/c81f22d15f568f38dec47.mp4",
 ]
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
