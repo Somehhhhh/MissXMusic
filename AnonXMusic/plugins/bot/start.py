@@ -98,8 +98,9 @@ async def start_pm(client, message: Message, _):
                 )
     else:
         out = private_panel(_)
+        hehe=random.choice(animation)
         await message.reply_animation(
-            animation=config.START_IMG_URL,
+            animation=hehe,
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -117,7 +118,7 @@ async def start_gp(client, message: Message, _):
     uptime = int(time.time() - _boot_)
     sex = random.choice(animation)
     await message.reply_animation(
-        animation=config.START_IMG_URL,
+        animation=sex,
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
