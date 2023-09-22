@@ -115,6 +115,7 @@ async def start_pm(client, message: Message, _):
 async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
+    sex = random.choice(animation)
     await message.reply_animation(
         animation=config.START_IMG_URL,
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
