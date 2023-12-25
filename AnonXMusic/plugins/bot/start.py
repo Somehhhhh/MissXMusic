@@ -25,7 +25,7 @@ from config import BANNED_USERS
 from strings import get_string
 
 hmm=[
-    "https://telegra.ph/file/90dee1f1bbb09f527f1e9.jpg", "https://telegra.ph/file/ee23c3535bfa3ebc1aef1.jpg", "https://telegra.ph/file/1b2faf12b0ce57b9651a7.jpg",
+    "https://telegra.ph/file/ab95b6efd81a8b9ffc11d.jpg", "https://telegra.ph/file/ab2afaeae749c1fc7e9bb.jpg", "https://telegra.ph/file/5f7eb85b0d473b1747fd7.jpg", "https://telegra.ph/file/90dee1f1bbb09f527f1e9.jpg", "https://telegra.ph/file/ee23c3535bfa3ebc1aef1.jpg", "https://telegra.ph/file/1b2faf12b0ce57b9651a7.jpg",
 ]
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
