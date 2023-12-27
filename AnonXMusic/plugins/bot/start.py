@@ -25,7 +25,7 @@ from config import BANNED_USERS
 from strings import get_string
 
 hmm=[
-    "https://telegra.ph/file/ab95b6efd81a8b9ffc11d.jpg", "https://telegra.ph/file/ab2afaeae749c1fc7e9bb.jpg", "https://telegra.ph/file/5f7eb85b0d473b1747fd7.jpg", "https://telegra.ph/file/90dee1f1bbb09f527f1e9.jpg", "https://telegra.ph/file/ee23c3535bfa3ebc1aef1.jpg", "https://telegra.ph/file/1b2faf12b0ce57b9651a7.jpg",
+    "https://te.legra.ph/file/aef4273eab89ab640c19d.mp4", "https://te.legra.ph/file/42064b9dac650dbabefcf.mp4", "https://te.legra.ph/file/9ed9772c1bb3b73b8281c.mp4", "https://te.legra.ph/file/5915bd30c9ff096b93366.mp4", "https://te.legra.ph/file/c81f22d15f568f38dec47.mp4",
 ]
 
 @app.on_message(filters.command(["start"]) & filters.private & ~BANNED_USERS)
@@ -36,9 +36,9 @@ async def start_pm(client, message: Message, _):
         name = message.text.split(None, 1)[1]
         if name[0:4] == "help":
             keyboard = help_pannel(_)
-            photo=random.choice(hmm)
-            return await message.reply_photo(
-                photo=photo,
+            animation=random.choice(hmm)
+            return await message.reply_animation(
+                animation=animation,
                 caption=_["help_1"].format(config.SUPPORT_CHAT),
                 reply_markup=keyboard,
             )
@@ -85,9 +85,9 @@ async def start_pm(client, message: Message, _):
                 ]
             )
             await m.delete()
-            await app.send_photo(
+            await app.send_animation(
                 chat_id=message.chat.id,
-                photo=thumbnail,
+                animation=thumbnail,
                 caption=searched_text,
                 reply_markup=key,
             )
@@ -99,8 +99,8 @@ async def start_pm(client, message: Message, _):
     else:
         out = private_panel(_)
         hehe=random.choice(hmm)
-        await message.reply_photo(
-            photo=hehe,
+        await message.reply_animation(
+            animation=hehe,
             caption=_["start_2"].format(message.from_user.mention, app.mention),
             reply_markup=InlineKeyboardMarkup(out),
         )
@@ -117,8 +117,8 @@ async def start_gp(client, message: Message, _):
     out = start_panel(_)
     uptime = int(time.time() - _boot_)
     sex = random.choice(hmm)
-    await message.reply_photo(
-        photo=sex,
+    await message.reply_animation(
+        animation=sex,
         caption=_["start_1"].format(app.mention, get_readable_time(uptime)),
         reply_markup=InlineKeyboardMarkup(out),
     )
@@ -152,8 +152,8 @@ async def welcome(client, message: Message):
                     return await app.leave_chat(message.chat.id)
 
                 out = start_panel(_)
-                await message.reply_photo(
-                    photo=config.START_IMG_URL,
+                await message.reply_animation(
+                    animation=config.START_IMG_URL,
                     caption=_["start_3"].format(
                         message.from_user.first_name,
                         app.mention,
