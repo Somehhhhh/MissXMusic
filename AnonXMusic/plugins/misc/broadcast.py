@@ -20,15 +20,11 @@ from config import adminlist
 IS_BROADCASTING = False
 
 
-@app.on_message(filters.command(["broadcast", "gcastx"]) & SUDOERS)
+@app.on_message(filters.command("broadcast") & SUDOERS)
 @language
 async def braodcast_message(client, message, _):
     global IS_BROADCASTING
-    copy = False
     if message.reply_to_message:
-        if message.text.startswith("/gcastx"):
-            copy = True
-            markup = message.reply_to_message.reply_markup
         x = message.reply_to_message.id
         y = message.chat.id
     else:
@@ -54,16 +50,17 @@ async def braodcast_message(client, message, _):
     if "-nobot" not in message.text:
         sent = 0
         pin = 0
+        chats = []
         schats = await get_served_chats()
-        chats = [int(chat["chat_id"]) for chat in schats]
+        for chat in schats:
+            chats.append(int(chat["chat_id"]))
         for i in chats:
             try:
-                if copy:
-                    m = await app.copy_message(i, y, x, reply_markup=markup)
-                elif message.reply_to_message:
-                    m = await app.forward_messages(i, y, x)
-                else:
-                    m = await app.send_message(i, text=query)
+                m = (
+                    await app.forward_messages(i, y, x)
+                    if message.reply_to_message
+                    else await app.send_message(i, text=query)
+                )
                 if "-pin" in message.text:
                     try:
                         await m.pin(disable_notification=True)
@@ -92,16 +89,17 @@ async def braodcast_message(client, message, _):
 
     if "-user" in message.text:
         susr = 0
+        served_users = []
         susers = await get_served_users()
-        served_users = [int(user["user_id"]) for user in susers]
+        for user in susers:
+            served_users.append(int(user["user_id"]))
         for i in served_users:
             try:
-                if copy:
-                    await app.copy_message(i, y, x, reply_markup=markup)
-                elif message.reply_to_message:
+                m = (
                     await app.forward_messages(i, y, x)
-                else:
-                    await app.send_message(i, text=query)
+                    if message.reply_to_message
+                    else await app.send_message(i, text=query)
+                )
                 susr += 1
                 await asyncio.sleep(0.2)
             except FloodWait as fw:
@@ -126,12 +124,11 @@ async def braodcast_message(client, message, _):
             client = await get_client(num)
             async for dialog in client.get_dialogs():
                 try:
-                    if copy:
-                        await client.copy_message(dialog.chat.id, y, x, reply_markup=markup)
-                    elif message.reply_to_message:
-                        await client.forward_messages(dialog.chat.id, y, x)
-                    else:
-                        await client.send_message(dialog.chat.id, text=query)
+                    await client.forward_messages(
+                        dialog.chat.id, y, x
+                    ) if message.reply_to_message else await client.send_message(
+                        dialog.chat.id, text=query
+                    )
                     sent += 1
                     await asyncio.sleep(3)
                 except FloodWait as fw:
